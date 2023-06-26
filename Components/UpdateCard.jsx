@@ -42,11 +42,6 @@ const UpdateCard = () => {
 
   ];
 
-  const handleHeadingClick = (event, id) => {
-    event.preventDefault();
-    const element = document.getElementById(`heading-${id}`);
-    element.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <div className="fixed top-16 right-auto bottom-28 left-auto w-full max-w-md p-4 glassmorphism border border-gray-200 rounded-lg shadow sm:p-8">
@@ -57,7 +52,7 @@ const UpdateCard = () => {
         <ul role="list" className="divide-y divide-gray-200">
           {UpdateList &&
             UpdateList.map((data) => (
-              <Link href="#" key={data.id} onClick={(event) => handleHeadingClick(event, data.id)} className="block py-3 sm:py-4 hover:bg-white/50 px-3 rounded-md">
+              <Link href="#" key={data.id}  className="block py-3 sm:py-4 hover:bg-white/50 px-3 rounded-md">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
                     <span className="bg-green-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
@@ -77,13 +72,7 @@ const UpdateCard = () => {
             ))}
         </ul>
       </div>
-      {UpdateList &&
-        UpdateList.map((data) => (
-          <div id={`heading-${data.id}`} key={data.id} className="py-6">
-            <h6 className="text-lg font-semibold">{data.Heading}</h6>
-            <p className="text-gray-700">{data.SubHeading}</p>
-          </div>
-        ))}
+      
     </div>
   );
 };

@@ -8,6 +8,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [toggleMenu, setToggleMenu] = useState(false);
     const [toggleSearchBar , setToggleSearchBar] = useState(false);
     const [toggleUpdateCard , setToggleUpdateCard] = useState(false);
+    const [toggleNotificationCard , setToggleNotificationCard] = useState(false);
   
     const handleToggleMenu = () => {
       setToggleMenu((prevState) => !prevState);
@@ -24,8 +25,11 @@ export const GlobalContextProvider = ({ children }) => {
     const handleToggleUpdateCard = ()=>{
       setToggleUpdateCard(!toggleUpdateCard)
     }
+    const handleToggleNotificationCard = ()=>{
+      setToggleNotificationCard(!toggleNotificationCard)
+    }
     return (
-        <GlobalContext.Provider value={{toggleDark, toggleMenu, handleToggleMenu , handleToggleDark , toggleSearchBar , handleToggleSearchBar ,handleToggleUpdateCard,toggleUpdateCard}}>
+        <GlobalContext.Provider value={{handleToggleNotificationCard,toggleNotificationCard,toggleDark, toggleMenu, handleToggleMenu , handleToggleDark , toggleSearchBar , handleToggleSearchBar ,handleToggleUpdateCard,toggleUpdateCard}}>
             {children}
         </GlobalContext.Provider>
     );

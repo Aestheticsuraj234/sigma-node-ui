@@ -14,11 +14,12 @@ import { useContext } from "react";
 import { GlobalContext } from "@/context/globalContext";
 import SearchBar from "./SearchBar";
 import UpdateCard from "./UpdateCard";
+import NotificationCard from "./NotificationCard";
 
 const Header = () => {
   const isLoggedIn = true;
   const notificationCount = 1;
-  const {handleToggleUpdateCard,toggleUpdateCard, toggleDark, toggleMenu, handleToggleMenu, handleToggleDark  , handleToggleSearchBar , toggleSearchBar} = useContext(GlobalContext)
+  const {handleToggleNotificationCard,toggleNotificationCard,handleToggleUpdateCard,toggleUpdateCard, toggleDark, toggleMenu, handleToggleMenu, handleToggleDark  , handleToggleSearchBar , toggleSearchBar} = useContext(GlobalContext)
 
   return (
     <nav className="flex-between w-full mb-10 pt-3">
@@ -64,8 +65,8 @@ const Header = () => {
             >
               {toggleDark ? <BiMoon className="text-2xl" /> : <BsSun className="text-2xl" />}
             </div>
-            <div className="relative">
-              <div className="absolute top-0 right-0 h-5 w-5 bg-red-600 text-white font-bold rounded-full flex items-center justify-center">
+            <div className="relative" onClick={handleToggleNotificationCard}>
+              <div  className="absolute top-0 right-0 h-5 w-5 bg-red-600 text-white font-bold rounded-full flex items-center justify-center">
                 <span id="notification-count" className="text-xs">
                   {notificationCount}
                 </span>
@@ -79,6 +80,7 @@ const Header = () => {
             </div>
 {toggleSearchBar && <SearchBar/>}
 {toggleUpdateCard && <UpdateCard/>}
+{toggleNotificationCard && <NotificationCard/>}
           </div>
         ) : (
           <>

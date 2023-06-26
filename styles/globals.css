@@ -168,3 +168,33 @@
 .flex-between {
   @apply flex justify-between items-center;
 }
+
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 8px;
+}
+
+/* Tailwind CSS classes */
+/* Set the width and height of the scroll bar */
+.w-scrollbar {
+  scrollbar-width: auto;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* Set the scroll bar color and track background color */
+.w-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+.w-scrollbar::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
