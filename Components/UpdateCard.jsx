@@ -1,10 +1,8 @@
-import { useContext, useRef } from "react";
-import { GlobalContext } from "@/context/globalContext";
 import Link from "next/link";
 
 const UpdateCard = () => {
-  const { handleToggleUpdateCard, toggleUpdateCard } = useContext(GlobalContext);
-  const containerRef = useRef(null); // Reference to the container element
+ 
+  
 
   const UpdateList = [
 
@@ -48,7 +46,7 @@ const UpdateCard = () => {
       <div className="flex items-center justify-between mb-4">
         <h5 className="text-xl font-bold leading-none text-gray-900 text-center">Latest Updates</h5>
       </div>
-      <div className="flow-root h-64 overflow-y-auto" ref={containerRef}>
+      <div className="flow-root h-64 overflow-y-auto" >
         <ul role="list" className="divide-y divide-gray-200">
           {UpdateList &&
             UpdateList.map((data) => (

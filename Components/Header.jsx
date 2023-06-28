@@ -15,11 +15,12 @@ import { GlobalContext } from "@/context/globalContext";
 import SearchBar from "./SearchBar";
 import UpdateCard from "./UpdateCard";
 import NotificationCard from "./NotificationCard";
+import UserProfileCard from "./UserProfileCard";
 
 const Header = () => {
   const isLoggedIn = true;
   const notificationCount = 1;
-  const {handleToggleNotificationCard,toggleNotificationCard,handleToggleUpdateCard,toggleUpdateCard, toggleDark, toggleMenu, handleToggleMenu, handleToggleDark  , handleToggleSearchBar , toggleSearchBar} = useContext(GlobalContext)
+  const { handleToggleUserProfile,toggleUserProfile,handleToggleNotificationCard, toggleNotificationCard, handleToggleUpdateCard, toggleUpdateCard, toggleDark, toggleMenu, handleToggleMenu, handleToggleDark, handleToggleSearchBar, toggleSearchBar } = useContext(GlobalContext)
 
   return (
     <nav className="flex-between w-full mb-10 pt-3">
@@ -66,7 +67,7 @@ const Header = () => {
               {toggleDark ? <BiMoon className="text-2xl" /> : <BsSun className="text-2xl" />}
             </div>
             <div className="relative" onClick={handleToggleNotificationCard}>
-              <div  className="absolute top-0 right-0 h-5 w-5 bg-red-600 text-white font-bold rounded-full flex items-center justify-center">
+              <div className="absolute top-0 right-0 h-5 w-5 bg-red-600 text-white font-bold rounded-full flex items-center justify-center">
                 <span id="notification-count" className="text-xs">
                   {notificationCount}
                 </span>
@@ -75,12 +76,13 @@ const Header = () => {
                 <IoMdNotificationsOutline className="text-2xl" />
               </div>
             </div>
-            <div className="rounded-full border hover:border-gray-500 py-2 px-2 text-gray-600 transition-all h text-center text-sm font-inter flex items-center justify-center">
+            <div onClick={handleToggleUserProfile} className="rounded-full border hover:border-gray-500 py-2 px-2 text-gray-600 transition-all h text-center text-sm font-inter flex items-center justify-center">
               <BiUserCircle className="text-2xl" />
             </div>
-{toggleSearchBar && <SearchBar/>}
-{toggleUpdateCard && <UpdateCard/>}
-{toggleNotificationCard && <NotificationCard/>}
+            {toggleSearchBar && <SearchBar />}
+            {toggleUpdateCard && <UpdateCard />}
+            {toggleNotificationCard && <NotificationCard />}
+            {toggleUserProfile && <UserProfileCard/>}
           </div>
         ) : (
           <>

@@ -78,7 +78,7 @@
 }
 
 .black_btn {
-  @apply rounded-full border  bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 py-1.5 px-5 text-white transition-all  text-center text-sm font-inter flex items-center justify-center;
+  @apply rounded-full border  bg-gradient-to-r from-rose-700 to-pink-600 py-1.5 px-5 text-white transition-all  text-center text-sm font-inter flex items-center justify-center;
 }
 
 .outline_btn {
@@ -90,7 +90,7 @@
 }
 
 .red_gradient {
-  @apply bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent;
+  @apply  bg-gradient-to-r from-rose-700 to-pink-600 bg-clip-text text-transparent;
 }
 
 .green_gradient {
@@ -169,32 +169,4 @@
   @apply flex justify-between items-center;
 }
 
-/* Hide the default scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
 
-::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 8px;
-}
-
-/* Tailwind CSS classes */
-/* Set the width and height of the scroll bar */
-.w-scrollbar {
-  scrollbar-width: auto;
-  scrollbar-color: #888 #f1f1f1;
-}
-
-/* Set the scroll bar color and track background color */
-.w-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #888;
-}
-
-.w-scrollbar::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-}

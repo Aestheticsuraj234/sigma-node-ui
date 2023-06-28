@@ -1,3 +1,4 @@
+"use client"
 import React, { useContext, useState } from 'react';
 import { BiCommentDetail,BiCodeAlt } from 'react-icons/bi';
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -41,7 +42,7 @@ const Tabs = () => {
 
   return (
     <div className="m-4">
-      <div className="border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
+      <div className="border-b border-gray-200 dark:border-gray-700 overflow-x-auto scrollbar scrollbar-track-slate-200 scrollbar-h-2 scrollbar-track-rounded-full scrollbar-thumb-black/30 scrollbar-thumb-rounded-full  ">
         <ul className="flex whitespace-nowrap pb-2">
           {categories.map((category) => (
             <TabItem category={category} key={category.name} />

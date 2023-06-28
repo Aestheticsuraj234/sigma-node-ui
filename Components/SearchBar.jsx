@@ -1,4 +1,3 @@
-"use client"
 import { useContext } from "react";
 import { GlobalContext } from "@/context/globalContext";
 import { AiOutlineClose } from "react-icons/ai"
