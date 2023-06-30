@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
           <div className="gradient" />
         </div>
           <main className="app">
-            {pathname === "/onBoard" ? <SigmaLogoHeader/>:<Header/>}
+            {pathname === "/onBoard" || pathname === "/login" ? <SigmaLogoHeader/>:<Header/>}
             {children}
           </main>
           </Provider>

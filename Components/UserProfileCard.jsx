@@ -5,11 +5,11 @@ import { BsJournalBookmarkFill } from "react-icons/bs";
 import { HiOutlineLogout } from "react-icons/hi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { GlobalContext } from "@/context/globalContext";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import Image from "next/image"; 
-import { signIn, signOut, useSession, getProviders } from "next-auth/react"
-import { useEffect } from "react"
-
+import {  signOut, useSession } from "next-auth/react"
 
 const MenuList = [
   { Title: "My Draft", icon: <RiDraftLine size={25} /> },
@@ -38,6 +38,7 @@ const PreLogin = () => {
       <div className="flex justify-center items-center flex-col gap-y-3">
         <button
           type="button"
+          onClick={()=>router.push('/login')}
           className="py-2.5 w-32 mr-2 mb-2 text-sm font-bold flex flex-row justify-center items-center gap-4 text-white focus:outline-none bg-gradient-to-r from-rose-700 to-pink-600 rounded-lg"
         >
           <BiLogIn size={20} />
@@ -57,17 +58,18 @@ const PreLogin = () => {
 
 const PostLogin = () => {
   const router = useRouter();
-  const { data: session, status } = useSession()
-  const { data: providers } = getProviders()
+  const { data: session } = useSession()
+  const { userData, handleLogout } = useContext(GlobalContext)
+  console.log("login:", userData)
 
- 
- 
+  const username = userData?.username || session?.user?.name;
+  const email = userData?.email || session?.user?.email;
 
   return (
     <div className="fixed z-50 top-16 right-3 bottom-28 left-auto w-96 scrollbar scrollbar-track-slate-200 scrollbar-w-2 scrollbar-track-rounded-full scrollbar-thumb-black/30 scrollbar-thumb-rounded-full max-w-md bg-white border border-gray-100 rounded-lg shadow-lg sm:p-8 overflow-y-auto">
       <div className="flex items-start justify-start mb-1 hover:bg-gray-100 py-5 px-4 rounded-lg">
         <Image
-            src={session?.user.image}
+          src={session?.user.image || `/assests/UserProfileLogo.png`}
           alt="Profile Image"
           width={50}
           height={50}
@@ -75,9 +77,9 @@ const PostLogin = () => {
         />
         <div className="flex flex-col justify-start items-start px-3">
           <span className="text-sm flex cursor-pointer font-bold rounded-lg text-gray-600">
-            {session?.user?.name}
+            {username}
           </span>
-          <p className="cursor-pointer font-bold text-base text-gray-700">{session?.user?.email}</p>
+          <p className="cursor-pointer font-bold text-base text-gray-700">{email}</p>
         </div>
       </div>
       <hr className="bg-gray-600" />
@@ -98,21 +100,33 @@ const PostLogin = () => {
         </ul>
       </div>
       <hr className="bg-gray-600" />
-      <div className="flex flex-row justify-center mt-2 bg-gradient-to-r from-rose-700 to-pink-600 gap-2 items-center py-5 px-4 rounded-lg text-white">
-        <span className="text-white">
-          <HiOutlineLogout size={20} />
-        </span>
-        <h3 onClick={()=>signOut()} className="font-extrabold text-white cursor-pointer text-sm">Logout</h3>
-      </div>
+      {session?.user && (
+        <div onClick={() => signOut()} className="flex flex-row justify-center mt-2 bg-gradient-to-r from-rose-700 to-pink-600 gap-2 items-center py-5 px-4 rounded-lg text-white">
+          <span className="text-white">
+            <HiOutlineLogout size={20} />
+          </span>
+          <h3 className="font-extrabold text-white cursor-pointer text-sm">Logout</h3>
+        </div>
+      )}
+      {userData?.email  && (
+        <div onClick={handleLogout} className="flex flex-row justify-center mt-2 bg-gradient-to-r from-rose-700 to-pink-600 gap-2 items-center py-5 px-4 rounded-lg text-white">
+          <span className="text-white">
+            <HiOutlineLogout size={20} />
+          </span>
+          <h3 className="font-extrabold text-white cursor-pointer text-sm">Logout</h3>
+        </div>
+      )}
     </div>
   );
 };
 
 const UserProfileCard = () => {
-  const router = useRouter();
-  const userisLoggedIn = false;
-  const { data: session, status } = useSession()
-  return session?.user ? <PostLogin /> : <PreLogin />;
+  const { userData } = useContext(GlobalContext);
+  console.log("login:", userData);
+
+  const { data: session } = useSession();
+
+  return session?.user || userData?.email ? <PostLogin /> : <PreLogin />;
 };
 
 export default UserProfileCard;
