@@ -42,7 +42,7 @@ const UpdateCard = () => {
 
 
   return (
-    <div className="fixed top-16 right-auto bottom-28 left-auto w-full max-w-md p-4 glassmorphism border border-gray-200 rounded-lg shadow sm:p-8">
+    <div className="fixed z-50 top-16 right-auto bottom-28 left-auto w-full max-w-md p-4 glassmorphism border border-gray-200 rounded-lg shadow sm:p-8">
       <div className="flex items-center justify-between mb-4">
         <h5 className="text-xl font-bold leading-none text-gray-900 text-center">Latest Updates</h5>
       </div>

@@ -16,9 +16,12 @@ import SearchBar from "./SearchBar";
 import UpdateCard from "./UpdateCard";
 import NotificationCard from "./NotificationCard";
 import UserProfileCard from "./UserProfileCard";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react"
+import { useEffect } from "react"
 
 const Header = () => {
-  const isLoggedIn = true;
+  const { data: session } = useSession()
+
   const notificationCount = 1;
   const { handleToggleUserProfile,toggleUserProfile,handleToggleNotificationCard, toggleNotificationCard, handleToggleUpdateCard, toggleUpdateCard, toggleDark, toggleMenu, handleToggleMenu, handleToggleDark, handleToggleSearchBar, toggleSearchBar } = useContext(GlobalContext)
 
@@ -44,7 +47,7 @@ const Header = () => {
       </div>
       {/* desktop navigation */}
       <div className="sm:flex hidden">
-        {isLoggedIn ? (
+
           <div className="flex gap-3 md:gap-5">
             <div onClick={handleToggleSearchBar} className="rounded-full border hover:border-gray-500 py-2 px-2 text-gray-600 transition-all h text-center text-sm font-inter flex items-center justify-center">
               <AiOutlineSearch className="text-2xl" />
@@ -77,20 +80,19 @@ const Header = () => {
               </div>
             </div>
             <div onClick={handleToggleUserProfile} className="rounded-full border hover:border-gray-500 py-2 px-2 text-gray-600 transition-all h text-center text-sm font-inter flex items-center justify-center">
-              <BiUserCircle className="text-2xl" />
+              {session?.user ?   <Image
+              src={session?.user.image}
+              alt="Profile Image"
+              width={24}
+              height={24}
+              className="rounded-full"
+            />: <BiUserCircle className="text-2xl" />}
             </div>
             {toggleSearchBar && <SearchBar />}
             {toggleUpdateCard && <UpdateCard />}
             {toggleNotificationCard && <NotificationCard />}
             {toggleUserProfile && <UserProfileCard/>}
           </div>
-        ) : (
-          <>
-            <button type="button" className="black_btn">
-              Sign In
-            </button>
-          </>
-        )}
       </div>
     </nav>
   );

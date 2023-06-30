@@ -1,7 +1,11 @@
+"use client"
 import '../styles/globals.css';
 import Header from '@/Components/Header';
 import { Inter } from 'next/font/google'
+import { usePathname } from 'next/navigation';
 import { GlobalContextProvider } from '@/context/globalContext';
+import SigmaLogoHeader from '@/Components/SigmaLogoHeader';
+import Provider from '@/Components/Provider';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,20 +16,25 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+  
+  
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='main'>
-          <div className='gradient' />
+        <GlobalContextProvider>
+          <Provider>
+        <div className="main">
+          <div className="gradient" />
         </div>
-        <GlobalContextProvider
-        >
-          <main className='app'>
-            <Header />
+          <main className="app">
+            {pathname === "/onBoard" ? <SigmaLogoHeader/>:<Header/>}
             {children}
           </main>
+          </Provider>
         </GlobalContextProvider>
       </body>
     </html>
-  )
+  );
 }
+
