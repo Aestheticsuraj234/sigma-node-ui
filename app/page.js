@@ -1,15 +1,20 @@
+import CEOCard from "@/Components/CEOCard"
+import DarkKeyFeatureCard from "@/Components/DarkKeyFeatureCard"
+import FeatureComponent from "@/Components/FeatureComponent"
+import HomeComponent from "@/Components/HomeComponent"
+import MoreFeature from "@/Components/MoreFeature"
 
 
 const Home = () => {
   return (
-    <section className="w-full flex-center flex-col">
-        <h1 className="head_text text-center text-gray-700">
-            Sigma Node
-            <br className="max-md:hidden"/>
-            <span className="red_gradient text-center">Discover a vibrant community.</span>
-            </h1>
-            <p className="desc text-center">Welcome to SIGMA NODE, the ultimate "Content-Creation" platform designed exclusively for developers like you</p>
-    </section>
+    <>
+    <HomeComponent/>
+    <CEOCard/>
+    <FeatureComponent/>
+    <DarkKeyFeatureCard/>
+    <MoreFeature/>
+    </>
+    
   )
 }
 
