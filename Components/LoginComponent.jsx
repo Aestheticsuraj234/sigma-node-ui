@@ -14,8 +14,6 @@ const LoginComponent = () => {
     const { data: session } = useSession();
     const [providers, setProviders] = useState(null);
     const router = useRouter();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [toggleEye, setToggleEye] = useState(true);
 
     useEffect(() => {

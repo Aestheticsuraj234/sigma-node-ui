@@ -1,7 +1,6 @@
 import "./globals.css";
 import Header from '@/Components/Header';
 import { Inter } from 'next/font/google'
-import { usePathname } from 'next/navigation';
 import { GlobalContextProvider } from '@/context/globalContext';
 import SigmaLogoHeader from '@/Components/SigmaLogoHeader';
 import Provider from '@/Components/Provider';
@@ -16,7 +15,7 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-  const pathname = usePathname();
+
   
   
   return (
@@ -28,7 +27,7 @@ export default function RootLayout({ children }) {
           <div className="gradient" />
         </div>
           <main className="app">
-            {pathname === "/onBoard" || pathname === "/login" ? <SigmaLogoHeader/>:<Header/>}
+          <Header/>
             {children}
             <Footer/>
           </main>
