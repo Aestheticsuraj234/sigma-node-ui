@@ -13,10 +13,10 @@ module.exports = {
       },
       colors: {
         'primary-indigo': '#D4ADFC',
-      }
+      },
     },
   },
   plugins: [
-    require('tailwind-scrollbar')({ nocompatible: true })
+    require('tailwind-scrollbar')({ nocompatible: true }),
   ],
 }
