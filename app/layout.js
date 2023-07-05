@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { GlobalContextProvider } from '@/context/globalContext';
 import SigmaLogoHeader from '@/Components/SigmaLogoHeader';
 import Provider from '@/Components/Provider';
+import Footer from '@/Components/Footer';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
           <main className="app">
             {pathname === "/onBoard" || pathname === "/login" ? <SigmaLogoHeader/>:<Header/>}
             {children}
+            <Footer/>
           </main>
           </Provider>
         </GlobalContextProvider>
