@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect ,useContext} from 'react';
 import Image from 'next/image';
-import { useSession, signIn, getProviders } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,19 +10,9 @@ import { GlobalContext } from '@/context/globalContext';
 import Cookies from 'js-cookie';
 
 const LoginComponent = () => {
-    const {loginPassword,loginEmail,handleFormSubmit,handleOnChangeValue} = useContext(GlobalContext)
+    const {handleToggleEye, toggleEye,loginPassword,loginEmail,handleFormSubmit,handleOnChangeValue} = useContext(GlobalContext)
     const { data: session } = useSession();
-    const [providers, setProviders] = useState(null);
     const router = useRouter();
-    const [toggleEye, setToggleEye] = useState(true);
-
-    useEffect(() => {
-    const setUpProvider = async () => {
-            const response = await getProviders();
-            setProviders(response);
-        };
-        setUpProvider();
-    }, []);
 
     useEffect(() => {
         if (session) {
@@ -36,11 +26,6 @@ const LoginComponent = () => {
         }
     },[])
 
-   
-
-    const handleToggleEye = () => {
-        setToggleEye(!toggleEye);
-    };
 
     
     return (

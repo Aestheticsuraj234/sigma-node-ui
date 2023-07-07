@@ -24,7 +24,7 @@ const FeatureCard = () => {
   return (
     <>
 {FeatureItem.map((item)=>(
-    <div key={item.id} className="max-w-sm glassmorphism border  rounded-lg m-3 shadow dark:bg-gray-800 dark:border-gray-700">
+    <div key={item.id} className="max-w-lg  glassmorphism border  rounded-lg m-3 shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
         <img className="rounded-t-lg" src={item.image} alt="" />
     </a>

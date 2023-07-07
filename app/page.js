@@ -1,9 +1,9 @@
-import CEOCard from "@/Components/CEOCard"
-import CommunityCard from "@/Components/CommunityCard"
-import DarkKeyFeatureCard from "@/Components/DarkKeyFeatureCard"
-import FeatureComponent from "@/Components/FeatureComponent"
-import HomeComponent from "@/Components/HomeComponent"
-import MoreFeature from "@/Components/MoreFeature"
+import CEOCard from "@/Components/Home/CEOCard"
+import CommunityCard from "@/Components/Home/CommunityCard"
+import DarkKeyFeatureCard from "@/Components/Home/DarkKeyFeatureCard"
+import FeatureComponent from "@/Components/Home/FeatureComponent"
+import HomeComponent from "@/Components/Home/HomeComponent"
+import MoreFeature from "@/Components/Home/MoreFeature"
 
 
 const Home = () => {

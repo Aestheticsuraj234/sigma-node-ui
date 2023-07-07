@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import Image from 'next/image';
 import { useSession, signIn, getProviders } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -7,15 +7,13 @@ import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
+import { GlobalContext } from '@/context/globalContext';
 
 const OnBoardComponent = () => {
     const { data: session } = useSession();
+    const {username,email , password , toggleEye,handleOnBoardChangeValue,handleToggleEye,handleOnBoardFormSubmit} = useContext(GlobalContext)
     const [providers, setProviders] = useState(null);
     const router = useRouter();
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [toggleEye, setToggleEye] = useState(true);
 
     useEffect(() => {
         const setUpProvider = async () => {
@@ -36,76 +34,6 @@ const OnBoardComponent = () => {
             router.push('/')
         }
     })
-
-    const handleOnChangeValue = (e) => {
-        const { name, value } = e.target;
-        if (name === 'username') {
-            setUsername(value);
-        } else if (name === 'Email') {
-            setEmail(value);
-        } else if (name === 'Password') {
-            setPassword(value);
-        }
-    };
-
-    const handleToggleEye = () => {
-        setToggleEye(!toggleEye);
-    };
-
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await fetch('http://localhost:8080/user', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username,
-                    email,
-                    password,
-                }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                const token = data.token;
-
-                // Save the token in a cookie
-                Cookies.set('jwtToken', token, { expires: 7 });
-
-                // Registration successful, handle success scenario
-                toast.success('🦄 Account Created Successfully!', {
-                    position: "top-right",
-                    autoClose: 4000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-
-                router.push('/login');
-            } else {
-                const data = await response.json();
-                console.error(data.error);
-                toast.error(data.error, {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
     return (
         <section className="h-screen">
@@ -137,13 +65,13 @@ const OnBoardComponent = () => {
 
                     {/* Right section */}
                     <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
-                        <form onSubmit={handleFormSubmit}>
+                        <form onSubmit={handleOnBoardFormSubmit}>
                             <div className="relative mb-6" data-te-input-wrapper-init>
                                 <input
                                     type="text"
                                     name="Email"
                                     value={email}
-                                    onChange={handleOnChangeValue}
+                                    onChange={handleOnBoardChangeValue}
                                     className="block min-h-[auto] w-full rounded border-0 bg-white shadow-lg px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 dark:text-neutral-200 dark:placeholder:text-neutral-200 font-semibold text-gray-500"
                                     id="exampleFormControlInput3"
                                     placeholder="Email address"
@@ -155,7 +83,7 @@ const OnBoardComponent = () => {
                                     type="text"
                                     name="username"
                                     value={username}
-                                    onChange={handleOnChangeValue}
+                                    onChange={handleOnBoardChangeValue}
                                     className="block min-h-[auto] w-full rounded border-0 bg-white shadow-lg px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear font-semibold text-gray-500"
                                     id="exampleFormControlInput3"
                                     placeholder="Username"
@@ -167,7 +95,7 @@ const OnBoardComponent = () => {
                                     type={toggleEye ? 'text' : 'password'}
                                     name="Password"
                                     value={password}
-                                    onChange={handleOnChangeValue}
+                                    onChange={handleOnBoardChangeValue}
                                     className="block min-h-[auto] w-full rounded border-0 bg-white shadow-lg px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear font-semibold text-gray-500"
                                     placeholder="Password"
                                 />

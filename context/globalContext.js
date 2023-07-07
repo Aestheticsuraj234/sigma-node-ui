@@ -18,6 +18,81 @@ export const GlobalContextProvider = ({ children }) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [userData, setUserData] = useState({});
+  const [toggleEye, setToggleEye] = useState(true);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+
+
+  const handleOnBoardFormSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+        const response = await fetch('http://localhost:8080/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password,
+            }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            const token = data.token;
+
+            // Save the token in a cookie
+            Cookies.set('jwtToken', token, { expires: 7 });
+
+            // Registration successful, handle success scenario
+            toast.success('🦄 Account Created Successfully!', {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            router.push('/login');
+        } else {
+            const data = await response.json();
+            console.error(data.error);
+            toast.error(data.error, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+  const handleOnBoardChangeValue = (e) => {
+    const { name, value } = e.target;
+    if (name === 'username') {
+        setUsername(value);
+    } else if (name === 'Email') {
+        setEmail(value);
+    } else if (name === 'Password') {
+        setPassword(value);
+    }
+};
+
+
+
 
   // login function
   const handleFormSubmit = async (e) => {
@@ -120,10 +195,14 @@ export const GlobalContextProvider = ({ children }) => {
   }
 
 
+  const handleToggleEye = () => {
+    setToggleEye(!toggleEye);
+};
+
 
 
   return (
-    <GlobalContext.Provider value={{ handleLogout,userData, handleOnChangeValue, loginPassword, loginEmail, handleFormSubmit, handleToggleUserProfile, toggleUserProfile, handleToggleNotificationCard, toggleNotificationCard, toggleDark, toggleMenu, handleToggleMenu, handleToggleDark, toggleSearchBar, handleToggleSearchBar, handleToggleUpdateCard, toggleUpdateCard }}>
+    <GlobalContext.Provider value={{handleOnBoardFormSubmit,username,email , password,handleOnBoardChangeValue,handleToggleEye, toggleEye,handleLogout,userData, handleOnChangeValue, loginPassword, loginEmail, handleFormSubmit, handleToggleUserProfile, toggleUserProfile, handleToggleNotificationCard, toggleNotificationCard, toggleDark, toggleMenu, handleToggleMenu, handleToggleDark, toggleSearchBar, handleToggleSearchBar, handleToggleUpdateCard, toggleUpdateCard }}>
       {children}
     </GlobalContext.Provider>
   );

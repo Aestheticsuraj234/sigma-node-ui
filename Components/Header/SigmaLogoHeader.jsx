@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+
 const SigmaLogoHeader = () => {
   return (
     <nav className="flex-center items-center flex w-full  pt-3  ">

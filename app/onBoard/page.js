@@ -1,4 +1,4 @@
-import OnBoardComponent from '@/Components/OnBoardComponent'
+import OnBoardComponent from '@/Components/Header/OnBoardComponent'
 
 const OnBoard = () => {
 

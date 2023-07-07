@@ -8,9 +8,9 @@ const DarkKeyFeatureCard = () => {
         <section className='bg-[#0f172a] flex w-[100%]  flex-col p-4 mt-12 rounded-lg max-w-full '>
             <h4 className='items-start justify-start flex text-left font-semibold text-green-500 '>Key Feature</h4>
             {/* subsection-1 */}
-            <div className='flex flex-row justify-between items-center mt-3'>
+            <div className='flex md:flex-row  flex-col md:justify-between justify-center  items-center mt-3'>
 
-                <h2 className='font-bold text-white text-4xl max-w-lg leading-10 '> Unleash Your Creativity with Sigma-Node's Multifaceted Content Platform</h2>
+                <h2 className='font-bold text-white md:text-4xl text-3xl max-w-lg leading-10 '> Unleash Your Creativity with Sigma-Node's Multifaceted Content Platform</h2>
                 <Image
                 src={"/assests/DarkFeatureCard.png"}
                 width={300}
@@ -22,7 +22,7 @@ const DarkKeyFeatureCard = () => {
 {/* Wanted to make a gird div where i need 2 cards in same row and other two into next row */}
             {/* subsection-2 */}
              {/* Subsection-2 */}
-      <div className="grid grid-cols-2 gap-4 mt-6">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-6">
         {/* Card 1 */}
         <div className="p-4 rounded-lg ">
           <h3 className="text-xl font-bold flex flex-row justify-start text-white items-center text-left gap-3">
