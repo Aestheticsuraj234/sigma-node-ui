@@ -32,7 +32,7 @@ const FeatureCard = () => {
         <a href="#">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-left  text-gray-900 dark:text-white">{item.title}</h5>
         </a>
-        <p className="mb-3 font-normal text-gray-700 text-left dark:text-gray-400">{item.description}</p>
+        <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">{item.description}</p>
        
     </div>
 </div>

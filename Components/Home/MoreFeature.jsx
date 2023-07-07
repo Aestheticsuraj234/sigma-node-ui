@@ -63,11 +63,11 @@ const MoreFeature = () => {
         {/* Card 1 */}
         {FeatureItems.map((item) => (
           <div key={item.id} className="p-4 rounded-lg ">
-            <h3 className="text-xl font-bold flex flex-row justify-start text-black items-center text-left gap-3">
+            <h3 className="text-xl font-bold flex flex-row justify-start text-black items-center  md:text-left gap-3">
               {item.icon}
               {item.title}
             </h3>
-            <p className="text-base text-gray-800 w-full font-semibold flex justify-start px-11 items-left flex-wrap">{item.description}</p>
+            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">{item.description}</p>
           </div>
         ))
         }
